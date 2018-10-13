@@ -46,10 +46,11 @@ class Slot:
 		unlock_solenoid(self.position)
 
 		#waits while the user opens the rack and inserts the board
-		while isHingeOpen(self.position) == True:
-			print("waiting", limit_switch_status)
-			time.sleep(0.1)
+		#while isHingeOpen(self.position) == True:
+		#	print("waiting", limit_switch_status)
+		#	time.sleep(0.1)
 
+		time.sleep(5)
 		#once the rack is re-closed, the states will update
 		self.isClaimed = True
 		self.isLocked = True
@@ -62,10 +63,11 @@ class Slot:
 		unlock_solenoid(self.position)
 
 		#waits for the user to open the door
-		while isHingeOpen(self.position) == True:
-			print("waiting", limit_switch_status)
-			time.sleep(0.1)
+		#while isHingeOpen(self.position) == True:
+		#	print("waiting", limit_switch_status)
+		#	time.sleep(0.1)
 
+		time.sleep(5)
 		#once the rack is re-closed, the states will update
 		self.isClaimed = False
 		self.isLocked = False
