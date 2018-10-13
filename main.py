@@ -5,6 +5,7 @@
 import time, random
 
 RACK_SIZE = 5
+FILE_NAME = "Rack_Status.txt"
 
 lockIDs = {} #lockIDs keeps a record of which position in the rack a given id has reserved
 racklots = [] #racklots keeps a record of which slots in the rack are empty and full
@@ -64,7 +65,6 @@ class Slot:
 		printstr += ")"
 		return printstr
 
-
 rack = [Slot(i) for i in range(RACK_SIZE)]
 
 def find_open_slot_pos():
@@ -75,34 +75,34 @@ def find_open_slot_pos():
 def add_board(studentID):
 	slot = rack[find_open_slot_pos()]
 	slot.claim(studentID)
-	print(slot)
 
 def find_slot(studentID):
 	for slot in rack:
 		if slot.studentIDNum == studentID:
-			return slot
+			return slot.position
 
 def remove_board(studentID):
-	slot = find_slot(studentID)
+	slot = rack[find_slot(studentID)]
 	slot.unclaim()
-	print(slot)
 
 def add_remove_board(studentID):
 	# checks that the input is a number
 	try:
 		studentID = int(studentID)
 		studentID = str(studentID)
-		# loops through the rack and checks whether the input student ID is registered to any of the slots
-		for slot in rack:
-			if slot.studentIDNum == studentID:
-				remove_board(studentID)
-				add_board(studentID)
+		if find_slot(studentID) != None:
+			remove_board(studentID)
+		else:
+			add_board(studentID)
 	except:
 		return
 
 def print_rack():
+	output = ""
 	for slot in rack:
-		print(slot)
+		output += str(slot) + "\n"
+	return output
+
 
 def isHingeOpen(position):
 	limitSwitchInput = random.getrandbits(1)	 
@@ -117,3 +117,14 @@ def unlock_solenoid(num):
 	pass
 def hasBoard(ultrasonicSensorInput):
 	pass
+
+def main():
+	while True:
+		studentID = input("Enter your input: ")
+		add_remove_board(studentID)
+		print(print_rack())
+		f = open(FILE_NAME, 'w')
+		f.write(print_rack())
+		f.close()
+		
+
