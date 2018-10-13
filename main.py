@@ -3,6 +3,21 @@
 
 
 import time, random
+from gpiozero import LED, Button
+
+solenoid = LED(17)
+limit_switch = Button(3)
+
+limit_switch_status = 0
+def limit_switch_on():
+	limit_switch_status = 1
+
+def limit_switch_off():
+	limit_switch_status = 0
+
+
+limit_switch.when_pressed = limit_switch_on.on
+limit_switch.when_released = led.limit_switch_off
 
 RACK_SIZE = 5
 FILE_NAME = "Rack_Status.txt"
@@ -101,26 +116,31 @@ def print_rack():
 
 
 def isHingeOpen(position):
+	return limit_switch_status
+	"""
 	limitSwitchInput = random.getrandbits(1)	 
 	if (limitSwitchInput > 0): #on
 		return True
 	else: #off
-		False
-	pass
+		False"""
+
 def lock_solenoid(num):
-	pass
+	solenoid.off()
+
 def unlock_solenoid(num):
-	pass
+	solenoid.on()
+	
 def hasBoard(ultrasonicSensorInput):
 	pass
 
 def main():
 	while True:
-		studentID = input("Enter your input: ")
+		studentID = input()
 		add_remove_board(studentID)
 		print(print_rack())
 		f = open(FILE_NAME, 'w')
 		f.write(print_rack())
 		f.close()
 		
-
+if __name__ == "__main__":
+	main()
