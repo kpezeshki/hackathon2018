@@ -134,13 +134,14 @@ def hasBoard(ultrasonicSensorInput):
 	pass
 
 def main():
-	while True:
-		studentID = input()
-		add_remove_board(studentID)
-		print(print_rack())
-		f = open(FILE_NAME, 'w')
-		f.write(print_rack())
-		f.close()
+	with open("/dev/tty0", "r") as tty:
+		while True:
+			studentID = tty.readline()
+			add_remove_board(studentID)
+			print(print_rack())
+			f = open(FILE_NAME, 'w')
+			f.write(print_rack())
+			f.close()
 		
 if __name__ == "__main__":
 	main()
