@@ -145,14 +145,18 @@ def hasBoard(ultrasonicSensorInput):
 def main():
 	print("running")
 	while True:
-		inputStr = input("")
-		print("input: ", inputStr)
-		studentID = inputStr
-		add_remove_board(studentID)
-		print(print_rack())
-		f = open(FILE_NAME, 'w')
-		f.write(print_rack())
-		f.close()
+		try:
+			inputStr = input("")
+			if len(inputStr) == 12 or len(inputStr) == 13:
+				print("input: ", inputStr)
+				studentID = inputStr
+				add_remove_board(studentID)
+				print(print_rack())
+				f = open(FILE_NAME, 'w')
+				f.write(print_rack())
+				f.close()
+		except EOFError:
+				pass
 		
 if __name__ == "__main__":
 	main()
