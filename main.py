@@ -9,10 +9,13 @@ solenoid = LED(4)
 limit_switch = Button(17)
 
 limit_switch_status = 0
+
 def limit_switch_on():
+	print("limit switch on")
 	limit_switch_status = 1
 
 def limit_switch_off():
+	print("limit switch off")
 	limit_switch_status = 0
 
 
@@ -118,7 +121,7 @@ def print_rack():
 
 
 def isHingeOpen(position):
-	return limit_switch_status
+	return limit_switch_status == 0
 	"""
 	limitSwitchInput = random.getrandbits(1)	 
 	if (limitSwitchInput > 0): #on
