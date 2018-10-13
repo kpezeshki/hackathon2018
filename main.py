@@ -42,6 +42,7 @@ class Slot:
 
 		#waits while the user opens the rack and inserts the board
 		while isHingeOpen(self.position) == False:
+			print("waiting", limit_switch_status)
 			time.sleep(0.1)
 
 		#once the rack is re-closed, the states will update
@@ -57,6 +58,7 @@ class Slot:
 
 		#waits for the user to open the door
 		while isHingeOpen(self.position) == False:
+			print("waiting", limit_switch_status)
 			time.sleep(0.1)
 
 		#once the rack is re-closed, the states will update
@@ -137,7 +139,7 @@ def main():
 	with open("/dev/tty0", "r") as tty:
 		while True:
 			inputStr = tty.readline()
-			print("inout:", inputStr)
+			print("input: ", inputStr)
 			studentID = inputStr
 			add_remove_board(studentID)
 			print(print_rack())
