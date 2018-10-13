@@ -8,21 +8,6 @@ from gpiozero import LED, Button
 solenoid = LED(4)
 limit_switch = Button(17)
 
-limit_switch_status = 0
-
-def limit_switch_on():
-	global limit_switch_status
-	print("limit switch on")
-	limit_switch_status = 1
-
-def limit_switch_off():
-	global limit_switch_status
-	print("limit switch off")
-	limit_switch_status = 0
-
-
-limit_switch.when_pressed = limit_switch_on
-limit_switch.when_released = limit_switch_off
 
 RACK_SIZE = 5
 FILE_NAME = "Rack_Status.txt"
@@ -125,7 +110,7 @@ def print_rack():
 
 
 def isHingeOpen(position):
-	return limit_switch_status == 0
+	return limit_switch.isPressed()
 	"""
 	limitSwitchInput = random.getrandbits(1)	 
 	if (limitSwitchInput > 0): #on
