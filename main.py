@@ -11,10 +11,12 @@ limit_switch = Button(17)
 limit_switch_status = 0
 
 def limit_switch_on():
+	global limit_switch_status
 	print("limit switch on")
 	limit_switch_status = 1
 
 def limit_switch_off():
+	global limit_switch_status
 	print("limit switch off")
 	limit_switch_status = 0
 
@@ -139,6 +141,7 @@ def hasBoard(ultrasonicSensorInput):
 	pass
 
 def main():
+	print("running")
 	with open("/dev/tty0", "r") as tty:
 		while True:
 			inputStr = tty.readline()
