@@ -1,5 +1,7 @@
 # MuddHacks 2018 Card Reader Code
 
+# C:\ProgramData\Anaconda3\Scripts\ipython3.exe
+# C:\Users\Nathan\hackathon2018
 
 lockIDs = {}
 rackSlots = []
@@ -52,10 +54,6 @@ def addRemoveBoard(studentID):
             addBoard(studentID)
     except:
         return
-
-def openSolenoid():
-
-def closeSolenoid():
 
 def acceptInput():
     """
