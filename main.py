@@ -21,8 +21,6 @@ class Slot:
 		#self.isHingeOpen = False
 
 	def claim(self, studentID):
-		#checks whether or not the slot physically has a board in it
-		#if self.hasBoard == False:
 
 		#unlocks the solenoid
 		unlock_solenoid(self.position)
@@ -38,8 +36,6 @@ class Slot:
 		lock_solenoid(self.position)
 
 	def unclaim(self):
-		#Checks whether or not the slot physically has a board in it
-		#if self.hasBoard = True:
 
 		#unlocks the solenoid
 		unlock_solenoid(self.position)
