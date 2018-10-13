@@ -5,8 +5,8 @@
 import time, random
 from gpiozero import LED, Button
 
-solenoid = LED(17)
-limit_switch = Button(3)
+solenoid = LED(4)
+limit_switch = Button(17)
 
 limit_switch_status = 0
 def limit_switch_on():
@@ -129,7 +129,7 @@ def lock_solenoid(num):
 
 def unlock_solenoid(num):
 	solenoid.on()
-	
+
 def hasBoard(ultrasonicSensorInput):
 	pass
 
