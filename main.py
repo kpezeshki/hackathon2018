@@ -16,8 +16,8 @@ def limit_switch_off():
 	limit_switch_status = 0
 
 
-limit_switch.when_pressed = limit_switch_on.on
-limit_switch.when_released = led.limit_switch_off
+limit_switch.when_pressed = limit_switch_on
+limit_switch.when_released = limit_switch_off
 
 RACK_SIZE = 5
 FILE_NAME = "Rack_Status.txt"
@@ -136,7 +136,9 @@ def hasBoard(ultrasonicSensorInput):
 def main():
 	with open("/dev/tty0", "r") as tty:
 		while True:
-			studentID = tty.readline()
+			inputStr = tty.readline()
+			print("inout:", inputStr)
+			studentID = inputStr
 			add_remove_board(studentID)
 			print(print_rack())
 			f = open(FILE_NAME, 'w')
